@@ -1,6 +1,6 @@
 "use client"
 import { motion } from "framer-motion";
-import Projects from "./Projects";
+// import  ThemeToggle  from "./ThemeToggle";
 
 export default function Hero() {
     const shapes = [
@@ -12,6 +12,11 @@ export default function Hero() {
 
     return (
         <section className="relative min-h-screen flex flex-col md:flex-row items-center justify-between px-8 py-16 overflow-hidden">
+            {/*}
+            <div className="absolute top-6 right-6 z-20 inset-0">
+                <ThemeToggle />
+            </div>
+            */}
             <div className="z-10 max-w-lg text-left">
                 <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-4">
                     Jeff Godonou

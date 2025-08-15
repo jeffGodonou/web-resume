@@ -1,7 +1,12 @@
+"use client"
 import Home from "./pages";
+import { ThemeProvider} from "next-themes";
 
 export default function Main() {
   return (
-    <Home />
+    <ThemeProvider attribute={"class"} defaultTheme="system">
+      <Home />
+    </ThemeProvider>
   );
 }
+
