@@ -1,5 +1,6 @@
 import Head from 'next/head';
-import Header from '../components/Header';
+// import Header from '../components/Header';
+import Hero from '../components/Hero';
 import About from '../components/About';
 import Experience from '../components/Experience';
 import Projects from '../components/Projects';
@@ -16,9 +17,12 @@ export default function Home() {
                 <title>My Resume</title>
                 <meta name="description" content="Resume of Jeff Godonou" />
             </Head>
-            
-            <Header />
 
+            <SectionWrapper id="Hero">
+                <Hero />
+                <ArrowDown to="About" />
+            </SectionWrapper>
+            
             <SectionWrapper id="About">
                 <About />
                 <ArrowDown to="Experience" />

@@ -61,7 +61,7 @@ const projectItems = [
 
 export default function Projects() {
     return (
-        <section className="px-6 py-12 bg-gray-50 dark:bg-gray-900">
+        <section id="projects" className="px-6 py-12 bg-gray-50 dark:bg-gray-900">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-50 mb-8">
                 Projects
             </h2>
