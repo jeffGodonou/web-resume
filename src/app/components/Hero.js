@@ -31,7 +31,7 @@ export default function Hero() {
                     <a className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700" href="#projects">
                         View My Work
                     </a>
-                    <a href="mailto:jeffalecgodonou@gmail.com" className="px-6 py-3 border border-gray-400 rounded-lg text-gray-700 dark:text-gray-300 hover:border-gray-600">
+                    <a href="#Contact" className="px-6 py-3 border border-gray-400 rounded-lg text-gray-700 dark:text-gray-300 hover:border-gray-600">
                         Contact Me
                     </a>
                 </div>

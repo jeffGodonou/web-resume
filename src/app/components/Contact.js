@@ -1,6 +1,6 @@
 export default function Contact() {
     return (
-        <section className="p-6 max-w-3xl mx-auto">
+        <section id="Contact" className="p-6 max-w-3xl mx-auto">
             <h2 className="text-2xl font-semibold mb-2">Contact</h2>
             <p>Email: <a href="mailto:jeffalecgodonou@gmail.com" className="text-blue-500 underline">jeffalecgodonou@gmail.com</a></p>
             <p>GitHub: <a href="https://github.com/jeffGodonou" className="text-blue-500 underline">github.com/jeffGodonou</a></p>
