@@ -5,6 +5,7 @@ const experienceItems = [
     {
         title: "Front End Developer Contributor",
         company: "Loriginal",
+        companyUrl: "https://www.loriginal.org/?srsltid=AfmBOopNhd344vZyZUl3mPtY7KBg-6cDGKJ91EXOQXr37RfT1pjmBotb",
         description: "Contributing to the development of user-friendly web applications.",
         start: "July 2025",
         end: "Present",
@@ -13,6 +14,7 @@ const experienceItems = [
     {
         title: "Technical Support Associate",
         company: "Fusion CX | TELUS Business Apps",
+        companyUrl: "https://www.fusioncx.com/locations/canada/",
         description: "Providing technical support and troubleshooting for business applications.",
         start: "June 2024",
         end: "Present",
@@ -26,6 +28,7 @@ const experienceItems = [
     {
         title: "Web Developer Consultant",
         company: "SDESJ",
+        companyUrl: "https://sdesj.org/",
         description: "Consulting on web development projects and best practices.",
         start: "June 2023",
         end: "June 2024",
@@ -34,6 +37,7 @@ const experienceItems = [
     {
         title: "Software Developer Intern",
         company: "DORSAL Lab",
+        companyUrl: "https://www.dorsal.polymtl.ca/en/",
         description: "Assisting in the development of software solutions.",
         start: "May 2022",
         end: "Dec 2022",
@@ -42,6 +46,7 @@ const experienceItems = [
     {
         title: "FullStack Developer Contributor",
         company: "METIS, Polytechnique Montreal",
+        companyUrl: "https://heka.polymtl.ca/",
         description: "Contributing to full-stack development projects.",
         start: "August 2017",
         end: "June 2018",
@@ -49,8 +54,9 @@ const experienceItems = [
         + " Member of the GUI team responsible for developing the interface of the club’s robotics platform."
     },
     {
-        title: "Laboratory Teaching Assistant",
+        title: "Laboratory Teaching Assistant - Microcomputer Architecture",
         company: "Polytechnique Montreal",
+        companyUrl: "https://www.polymtl.ca/programmes/cours/architecture-des-micro-ordinateurs",
         description: "Assisting in teaching laboratory sessions.",
         start: "2018",
         end: "2018"
