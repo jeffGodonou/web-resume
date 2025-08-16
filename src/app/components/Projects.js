@@ -35,7 +35,7 @@ const projectItems = [
         description: "Built a recipe management app using React, allowing users to create, edit, and share their favorite recipes.",
         image: "/placeholder.png",
         tags: ["React", "Node.js", "MongoDB"],
-        github: "https://github.com/jeffGodonou/recipe-management-app.git",
+        github: "https://github.com/jeffGodonou/recipe-app.git",
         demo: "#",
         duration: 16
     },
@@ -49,6 +49,30 @@ const projectItems = [
         tags: ["React", "Node.js", "MongoDB", "Express", "Docker"],
         skills: ["UI Design", "API Development", "Database Management", "Deployment"],
         duration: 6
+    },
+    {
+        type: "real",
+        date: "2020",
+        title: "Mobile Developer - Bixi | Polytechnique Montréal",
+        tagline: "Visualizing Bike Usage Data",
+        description: "Developed a mobile application to generate and visualize bike usage data in urban areas.",
+        image: "/placeholder.png",
+        tags: ["Kotlin", "Android", "Jetpack", "Retrofit", "Docker"],
+        skills: ["Android Development", "Material Design", "MVVM", "UI Design", "API Development", "Database Management", "Deployment", "Testing", "Project Management", "Agile Methodologies"],
+        github: "https://github.com/jeffGodonou/projet3_bixai.git",
+        duration: 5
+    },
+        {
+        type: "real",
+        date: "2020",
+        title: "Full Stack Developer - Polytechnique Montréal",
+        tagline: "Developped a Paint Application",
+        description: "Developed a web-based paint application with collaborative features.",
+        image: "/placeholder.png",
+        tags: ["Angular", "TypeScript", "HTML", "SCSS", "Docker", "Node.js", "Express", "MongoDB", "Mocha"],
+        skills: ["REST", "Scrum", "UI Design", "API Development", "Database Management", "Deployment", "Testing", "Project Management", "Agile Methodologies"],
+        github: "https://github.com/jeffGodonou/projet3_bixai.git",
+        duration: 5
     },
     {
         type: "concept",
