@@ -1,6 +1,6 @@
 "use client";
 import { motion, useInView } from "framer-motion";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const containerVariants = {
     animate: {
@@ -67,10 +67,36 @@ const getDuration = (start, end) => {
     return months > 0 ? months : 1;
 };
 
+function getDurationClient(start, end) {
+  const [duration, setDuration] = useState(1);
+
+  useEffect(() => {
+    const startDate = new Date(start);
+    const endDate =
+      typeof end === "string" && end.toLowerCase().trim() === "present"
+        ? new Date()
+        : new Date(end);
+
+    if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+      setDuration(1);
+      return;
+    }
+
+    const months =
+      (endDate.getFullYear() - startDate.getFullYear()) * 12 +
+      (endDate.getMonth() - startDate.getMonth());
+
+    setDuration(months > 0 ? months : 1);
+  }, [start, end]);
+
+  return duration;
+}
+
 export default function Timeline({ items }) {
     const [activeIdx, setActiveIdx] = useState(null);
     const ref = useRef(null);
     const inView = useInView(ref, { once: true, margin: "-50px" });
+    const duration = getDurationClient(items[0].start, items[0].end);
 
     return (
         <motion.div
@@ -90,7 +116,7 @@ export default function Timeline({ items }) {
             />
 
             {items.map((item, idx) => {
-                const durationMonths = getDuration(item.start, item.end);
+                const durationMonths = duration[idx];
                 const isActive = activeIdx === idx;
 
                 return (
