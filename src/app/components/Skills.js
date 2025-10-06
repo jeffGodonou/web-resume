@@ -1,62 +1,106 @@
-"use client"
+"use client";
+import { useState } from "react";
 import { motion } from "framer-motion";
+import {
+  CircularProgressbar,
+  buildStyles,
+} from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
 const skills = [
-    {name: "English", category: "Languages", level: 90 },
-    {name: "French", category:"Languages", level: 95},
-    {name: "Spanish", category:"Languages", level: 30},
-    {name: "Java", category: "Programming Languages", level: 65 },
-    {name: "C++", category: "Programming Languages", level: 60 },
-    {name: "Python", category: "Programming Languages", level: 60 },
-    {name: "SQL", category: "Programming Languages", level: 60 },
-    {name: "JavaScript / Typescript", category: "Programming Languages", level: 75 },
-    {name: "React", category: "Frameworks", level: 70 },
-    {name: "Node.js", category: "Frameworks", level: 70 },
-    {name: "Tailwind CSS", category: "Frameworks", level: 75 },
-    {name: "HTML / CSS", category: "Markup Languages", level: 70 },
-    {name: "Git", category: "Tools", level: 80 },
-    {name: "Docker", category: "Tools", level: 50 },
-    {name: "Kubernetes", category: "Tools", level: 30 },
-    {name: "AWS", category: "Cloud", level: 50 },
-    {name: "TDD", category: "Methodologies", level: 60 },
-    {name: "Agile", category: "Methodologies", level: 70 }
-]
+  { name: "JavaScript / TypeScript", category: "Programming", level: 75 },
+  { name: "React", category: "Frontend", level: 70 },
+  { name: "Node.js", category: "Backend", level: 70 },
+  { name: "Tailwind CSS", category: "Frontend", level: 75 },
+  { name: "Java", category: "Programming", level: 65 },
+  { name: "Python", category: "Programming", level: 60 },
+  { name: "Docker", category: "Tools", level: 50 },
+  { name: "AWS", category: "Cloud", level: 50 },
+];
+
+const learning = [
+  { name: "GraphQL" },
+  { name: "Rust" },
+  { name: "Advanced AWS" },
+  { name: "Kubernetes" },
+];
 
 export default function Skills() {
-    const skillCategories = skills.reduce((acc, skill) => {
-        acc[skill.category] = acc[skill.category] || [];
-        acc[skill.category].push(skill);
-        return acc;
-    }, {});
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
-    const SkillsBar = ({ skill }) => (
-        <div className="mb-3">
-            <div className="flex justify-between mb-1">
-                <span className="text-sm font-medium">{skill.name}</span>
-                <span className="text-sm font-medium">{skill.level}%</span>
-            </div>
-            <div className="w-full h-2 bg-blue-200 rounded">
-                <motion.div
-                    className="h-2 bg-blue-600 rounded"
-                    initial={{ width: 0 }}
-                    animate={{ width: `${skill.level}%` }}
-                    transition={{ duration: 0.6, ease: "easeInOut" }}
-                />
-            </div>
-        </div>
-    );
+  const categories = ["All", ...new Set(skills.map((s) => s.category))];
 
-    return (
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <h2 className="text-2xl font-semibold mb-2">Skills</h2>
-            {Object.entries(skillCategories).map(([category, skills]) => (
-                <div key={category} className="mb-6">
-                    <h3 className="text-xl font-semibold mb-2">{category}</h3>
-                    {skills.map(skill => (
-                        <SkillsBar key={skill.name} skill={skill} />
-                    ))}
-                </div>
-            ))}
-        </section>
-    )
+  const filteredSkills =
+    selectedCategory === "All"
+      ? skills
+      : skills.filter((s) => s.category === selectedCategory);
+
+  return (
+    <section className="my-12">
+      <h2 className="text-3xl font-bold mb-6 text-center">Skills</h2>
+
+      {/* Category Filter */}
+      <div className="flex flex-wrap justify-center gap-3 mb-10">
+        {categories.map((cat) => (
+          <motion.button
+            key={cat}
+            onClick={() => setSelectedCategory(cat)}
+            whileHover={{ scale: 1.05 }}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition 
+              ${
+                selectedCategory === cat
+                  ? "bg-blue-600 text-white"
+                  : "border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
+              }`}
+          >
+            {cat}
+          </motion.button>
+        ))}
+      </div>
+
+      {/* Current Skills (Radial Rings) */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+        {filteredSkills.map((skill, idx) => (
+          <motion.div
+            key={skill.name}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: idx * 0.1 }}
+            className="flex flex-col items-center"
+          >
+            <div className="w-24 h-24 mb-3">
+              <CircularProgressbar
+                value={skill.level}
+                text={`${skill.level}%`}
+                styles={buildStyles({
+                  pathColor: "#2563eb",
+                  textColor: "#1e293b",
+                  trailColor: "#e2e8f0",
+                  textSize: "1.5rem",
+                })}
+              />
+            </div>
+            <span className="text-sm font-medium text-center">{skill.name}</span>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Learning / Exploring */}
+      <h2 className="text-2xl font-bold mb-4 text-center">Currently Exploring</h2>
+      <div className="flex flex-wrap justify-center gap-3">
+        {learning.map((skill, idx) => (
+          <motion.span
+            key={skill.name}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: idx * 0.15 }}
+            whileHover={{ scale: 1.1 }}
+            className="px-4 py-2 rounded-full border-2 border-blue-600 text-blue-600 font-medium cursor-pointer hover:bg-blue-600 hover:text-white transition"
+          >
+            {skill.name}
+          </motion.span>
+        ))}
+      </div>
+    </section>
+  );
 }
