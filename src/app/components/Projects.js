@@ -1,6 +1,13 @@
 "use client"
 import { motion } from "framer-motion"
 import Timeline from "./Timeline"
+import SmartTaskManagerCover from "./Animations/SmartTaskManagerCover"
+import PortfolioWebsiteCover from "./Animations/PortfolioWebsiteCover"
+import RecipeAppCover from "./Animations/RecipeAppCover"
+import GreenhouseAppCover from "./Animations/GreenHouseAppCover"
+import BixiAppCover from "./Animations/BixiAppCover"
+import PaintAppCover from "./Animations/PaintAppCover"
+import ConceptProjectCover from "./Animations/ConceptProjectCover"
 
 const projectItems = [
     {
@@ -9,7 +16,7 @@ const projectItems = [
         title: "Portfolio Website",
         tagline: "Showcasing My Work",
         description: "Built a personal portfolio website using React and Tailwind CSS.",
-        image: "/placeholder.png",
+        image: <PortfolioWebsiteCover />,
         tags: ["React", "Next.js", "Tailwind CSS"],
         github: "https://github.com/jeffGodonou/web-resume.git",
         demo: "#",
@@ -21,7 +28,7 @@ const projectItems = [
         title: "Smart Task Manager",
         tagline: "Organize Your Tasks Efficiently",
         description: "Built a Java-based task manager with Maven, JUnit testing, and JSON-based persistence.",
-        image: "/placeholder.png",
+        image: <SmartTaskManagerCover />,
         tags: ["Java", "Maven", "JUnit"],
         github: "https://github.com/jeffGodonou/smart-task-manager.git",
         demo: "#",
@@ -33,7 +40,7 @@ const projectItems = [
         title: "Recipe Management App",
         tagline: "Manage Your Favorite Recipes",
         description: "Built a recipe management app using React, allowing users to create, edit, and share their favorite recipes.",
-        image: "/placeholder.png",
+        image: <RecipeAppCover />,
         tags: ["React", "Node.js", "MongoDB"],
         github: "https://github.com/jeffGodonou/recipe-app.git",
         demo: "#",
@@ -45,7 +52,7 @@ const projectItems = [
         title: "Full Stack Developer - GHGSat (Capstone Project)",
         tagline: "Visualizing Emissions Data",
         description: "Developed a web application to generate and visualize greenhouse gas emissions data in space.",
-        image: "/placeholder.png",
+        image: <GreenhouseAppCover />,
         tags: ["React", "Node.js", "MongoDB", "Express", "Docker"],
         skills: ["UI Design", "API Development", "Database Management", "Deployment"],
         duration: 6
@@ -56,29 +63,29 @@ const projectItems = [
         title: "Mobile Developer - Bixi | Polytechnique Montréal",
         tagline: "Visualizing Bike Usage Data",
         description: "Developed a mobile application to generate and visualize bike usage data in urban areas.",
-        image: "/placeholder.png",
+        image: <BixiAppCover />,
         tags: ["Kotlin", "Android", "Jetpack", "Retrofit", "Docker"],
         skills: ["Android Development", "Material Design", "MVVM", "UI Design", "API Development", "Database Management", "Deployment", "Testing", "Project Management", "Agile Methodologies"],
         github: "https://github.com/jeffGodonou/projet3_bixai.git",
         duration: 5
     },
-        {
+    {
         type: "real",
         date: "2020",
         title: "Full Stack Developer - Polytechnique Montréal",
         tagline: "Developped a Paint Application",
         description: "Developed a web-based paint application with collaborative features.",
-        image: "/placeholder.png",
+        image: <PaintAppCover />,
         tags: ["Angular", "TypeScript", "HTML", "SCSS", "Docker", "Node.js", "Express", "MongoDB", "Mocha"],
         skills: ["REST", "Scrum", "UI Design", "API Development", "Database Management", "Deployment", "Testing", "Project Management", "Agile Methodologies"],
-        github: "https://github.com/jeffGodonou/projet3_bixai.git",
+        github: "https://github.com/jeffGodonou/projet2",
         duration: 5
     },
     {
         type: "concept",
         title: "Concept Project",
         tagline: "Problem Solver",
-        image: "/placeholder3.png",
+        image: <ConceptProjectCover />,
         description: "Focus on problem-solving and architecture design.",
     },
 ];
@@ -100,11 +107,17 @@ export default function Projects() {
                         >
                             {/* Front side */}
                             <div className="p-4">
-                                <img
-                                    src={project.image}
-                                    alt={project.title}
-                                    className="w-full h-40 object-cover rounded-md mb-4"
-                                />
+
+                                {typeof project.image === "string" ? (
+                                    <img
+                                        src={project.image}
+                                        alt={project.title}
+                                        className="w-full h-40 object-cover rounded-md mb-4"
+                                    />
+                                ) : (
+                                    <div className="w-full h-64">{project.image}</div>
+                                )}
+                                
                                 <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-50">
                                     {project.title}
                                 </h3>
