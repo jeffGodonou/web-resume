@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Github, Linkedin, Phone } from "lucide-react";
+import emailjs from 'emailjs-com';
 
 const contacts = [
   {
@@ -36,6 +37,11 @@ const contacts = [
 
 export default function Contact() {
   const [copied, setCopied] = useState(null);
+  const [templateParams, setTemplateParams] = useState({
+    name: '',
+    reply_to: '',
+    message: ''
+  });
 
   const handleCopy = (text) => {
     navigator.clipboard.writeText(text);
@@ -43,6 +49,24 @@ export default function Contact() {
     setTimeout(() => setCopied(null), 2000);
   };
 
+  const handleSendMessage = () => {
+    console.log(templateParams);
+
+    emailjs.send('service_sifbatl', 'template_2trhu3n', templateParams, 'H7KVuvjhT3UJK7fHS')
+      .then((result) => {
+          console.log(result.text);
+          alert("Message sent! I'll get back to you soon.");
+          setTemplateParams({
+            name: '',
+            reply_to: '',
+            message: '',
+        });
+      }, (error) => {
+          console.log(error.text);
+      });
+    
+  };
+  
   return (
     <section id="contact" className="relative px-6 py-20 max-w-5xl mx-auto">
       {/* Gradient background animation */}
@@ -74,7 +98,7 @@ export default function Contact() {
           >
             {c.icon}
             <p className="mt-2 text-sm text-gray-400">{c.label}</p>
-            <p className="font-semibold">{c.value}</p>
+            {/* <p className="font-semibold">{c.value}</p> */}
             {copied === c.value && (
               <span className="mt-1 text-xs text-green-400">Copied ✅</span>
             )}
@@ -88,6 +112,10 @@ export default function Contact() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className="relative bg-gray-900/70 border border-gray-700 p-8 rounded-2xl shadow-lg max-w-2xl mx-auto space-y-6"
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSendMessage();
+        }}
       >
         <h3 className="text-2xl font-bold text-white text-center">
           Or Drop Me a Message ✨
@@ -98,6 +126,8 @@ export default function Contact() {
             type="text"
             className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-600 focus:ring-2 focus:ring-blue-500 outline-none"
             placeholder="Your name"
+            value={templateParams.name}
+            onInput={(e) => setTemplateParams({ ...templateParams, name: e.target.value })}
           />
         </div>
         <div>
@@ -106,6 +136,8 @@ export default function Contact() {
             type="email"
             className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-600 focus:ring-2 focus:ring-blue-500 outline-none"
             placeholder="Your email"
+            value={templateParams.reply_to}
+            onInput={(e) => setTemplateParams({ ...templateParams, reply_to: e.target.value })}
           />
         </div>
         <div>
@@ -114,9 +146,12 @@ export default function Contact() {
             className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-600 focus:ring-2 focus:ring-blue-500 outline-none"
             placeholder="Write something cool..."
             rows={4}
+            value={templateParams.message}
+            onInput={(e) => setTemplateParams({ ...templateParams, message: e.target.value })}
           />
         </div>
         <motion.button
+          type ="submit"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className="w-full py-3 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold shadow-md"
