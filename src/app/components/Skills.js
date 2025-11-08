@@ -9,11 +9,12 @@ import "react-circular-progressbar/dist/styles.css";
 
 const skills = [
   { name: "JavaScript / TypeScript", category: "Programming", level: 75 },
-  { name: "React", category: "Frontend", level: 70 },
+  { name: "React", category: "Frontend", level: 75 },
+  { name: "C/C++", category: "Programming", level: 70 },
   { name: "Node.js", category: "Backend", level: 70 },
   { name: "Tailwind CSS", category: "Frontend", level: 75 },
-  { name: "Java", category: "Programming", level: 65 },
-  { name: "Python", category: "Programming", level: 60 },
+  { name: "Java", category: "Programming", level: 70 },
+  { name: "Python", category: "Programming", level: 65 },
   { name: "Docker", category: "Tools", level: 50 },
   { name: "AWS", category: "Cloud", level: 50 },
 ];
@@ -74,7 +75,7 @@ export default function Skills() {
                 text={`${skill.level}%`}
                 styles={buildStyles({
                   pathColor: "#2563eb",
-                  textColor: "#1e293b",
+                  textColor: "#5a6679ff",
                   trailColor: "#e2e8f0",
                   textSize: "1.5rem",
                 })}
